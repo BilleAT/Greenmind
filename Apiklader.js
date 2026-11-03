@@ -26,7 +26,6 @@ function sendMailAPI() {
     let username = document.getElementById("username").value.trim();
     const emailInput = document.getElementById("email");
     let recipient = emailInput.value.trim().toLowerCase();
-    const interest = document.getElementById("interest").value;
     const consent = document.getElementById("email-consent");
 
     if (!username || !recipient) {
@@ -69,7 +68,7 @@ function sendMailAPI() {
             user_id: "nB-keowIPftpv463j", 
             template_params: {
                 to_email: recipient,
-                message: `Hej ${username}. Tak for din interesse for ${interest}. Dette er én velkomstmail fra Green Mind Newsletters-prototypen.`
+                message: `Hej ${username}. Tak for din tilmelding. Dette er én velkomstmail fra Green Mind Newsletters-prototypen.`
             }
         })
     })
@@ -93,9 +92,6 @@ function sendMailAPI() {
         // Registrer e-mail og giv point
         usersData[username].emails.push(recipient);
         usersData[username].points += 1; // 1 point pr. registreret e-mail
-        usersData[username].interests = usersData[username].interests || [];
-        usersData[username].interests.push(interest);
-        
         saveUsersLocally(usersData); // Gem opdaterede data
         
         alert(`Velkomstmail sendt og 1 point tildelt ${username}!`);
