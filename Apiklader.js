@@ -23,10 +23,18 @@ function saveUsersLocally(usersData) {
  * Hovedfunktionalitet: Tjekker lokalt, sender mail via EmailJS, gemmer registrering og opdaterer point.
  */
 function sendMailAPI() {
-    let username = document.getElementById("username").value.trim();
+    const usernameInput = document.getElementById("username");
     const emailInput = document.getElementById("email");
-    let recipient = emailInput.value.trim().toLowerCase();
     const consent = document.getElementById("email-consent");
+
+    if (!usernameInput || !emailInput || !consent) {
+        console.error("Tilmeldingsformularen mangler et eller flere felter.");
+        alert("Tilmeldingsformularen kunne ikke indlæses. Genindlæs siden, og prøv igen.");
+        return;
+    }
+
+    let username = usernameInput.value.trim();
+    let recipient = emailInput.value.trim().toLowerCase();
 
     if (!username || !recipient) {
         alert("Indtast venligst både et brugernavn og en e-mailadresse.");
